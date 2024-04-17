@@ -1,6 +1,7 @@
-package SAE21_2023;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*; 
+
  
 public class Menu {
   public static void main(String[] args) {
@@ -29,6 +30,18 @@ public class Menu {
 
     // Ajout du JPanel contenant les boutons à la fenêtre
     fenetre.add(panelBoutons, BorderLayout.SOUTH);
+
+    comment_jouer.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+          // Ici, on peut afficher la nouvelle fenêtre
+          JOptionPane.showMessageDialog(fenetre, "Instructions sur comment jouer...");
+      }
+  });
+  quitter.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        fenetre.dispose(); // Ferme la fenêtre
+    }
+  });
     fenetre.setVisible(true);
   }
 }
