@@ -1,14 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class SudokuView {
+public class MenuView {
     private JFrame frame;
     private JPanel panel;
     private JButton jouerButton;
     private JButton commentJouerButton;
     private JButton quitterButton;
 
-    public SudokuView() {
+    public MenuView() {
         frame = new JFrame();
         frame.setSize(200, 200);
         frame.setLocation(100, 100);
@@ -25,6 +25,12 @@ public class SudokuView {
         jouerButton.setFont(buttonFont);
         commentJouerButton.setFont(buttonFont);
         quitterButton.setFont(buttonFont);
+
+        MenuController controller = new MenuController(frame); // Passer la référence de la fenêtre
+
+        jouerButton.addActionListener(controller);
+        commentJouerButton.addActionListener(controller);
+        quitterButton.addActionListener(controller);
 
         panel.add(jouerButton);
         panel.add(commentJouerButton);
@@ -51,5 +57,11 @@ public class SudokuView {
 
     public void showMessage(String message) {
         JOptionPane.showMessageDialog(frame, message);
+    }
+
+    public static void main(String[] args) {
+        // Création de l'interface du menu
+        MenuView menu = new MenuView();
+        menu.show();
     }
 }

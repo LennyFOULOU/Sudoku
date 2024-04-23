@@ -1,24 +1,25 @@
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*; 
 
-public class SudokuController {
-    private SudokuView view;
+public class MenuController implements ActionListener {
+    private JFrame fenetre;
 
-    public SudokuController(SudokuView view) {
-        this.view = view;
-        initializeListeners();
+    public MenuController(JFrame fenetre){
+        this.fenetre = fenetre;
     }
 
-    private void initializeListeners() {
-        view.getCommentJouerButton().addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                view.showMessage("Instructions sur comment jouer...");
-            }
-        });
-
-        view.getQuitterButton().addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0); // Quitte l'application
-            }
-        });
+    public void actionPerformed(ActionEvent e) {
+        // Code à exécuter lorsque l'action est déclenchée
+        if (e.getActionCommand().equals("Jouer")) {
+            System.out.println("VIENS ON JOUE ?");
+        } else if (e.getActionCommand().equals("Comment jouer ?")) {
+            JOptionPane.showMessageDialog(fenetre, "Instructions sur comment jouer...");
+        } else if (e.getActionCommand().equals("Quitter")) {
+            // Code pour le bouton "Quitter"
+            System.exit(0); // Quitter l'application
+        }
     }
 }
