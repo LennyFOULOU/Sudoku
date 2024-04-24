@@ -17,5 +17,9 @@ public class Main {
 
         // Affichage de la vue du menu
         menuView.show();
+        CaseController grid = new CaseController();
+
+        grid.setNumber(0, 0, 5);
+        grid.setNumber(1, 1, 3);
     }
 }
