@@ -43,8 +43,8 @@ public class SudokuView {
         JOptionPane.showMessageDialog(frame, message);
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         SudokuView SudokuView = new SudokuView();
         SudokuView.show();
-    }
+    }*/
 }

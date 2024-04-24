@@ -59,9 +59,16 @@ public class MenuView {
         JOptionPane.showMessageDialog(frame, message);
     }
 
-    public static void main(String[] args) {
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    
+
+    /*public static void main(String[] args) {
         // Création de l'interface du menu
         MenuView menu = new MenuView();
         menu.show();
-    }
+    }*/
 }

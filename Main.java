@@ -1,20 +1,21 @@
 import javax.swing.*;
 
+
 public class Main {
     public static void main(String[] args) {
-       /* MenuView view = new MenuView();
-        MenuController controller = new MenuController(view);
-        view.show();*/
-        
-        SudokuGrid model = new SudokuGrid();
-        SudokuView view = new SudokuView();
-        SudokuController controller = new SudokuController(model, view);
+        // Création de la vue du menu
+        MenuView menuView = new MenuView();
 
-        view.addController(controller);
+        // Création du contrôleur du menu
+        JFrame frame = menuView.getFrame(); // Obtenez la JFrame de la vue du menu
+        MenuController menuController = new MenuController(frame);
 
+        // Ajout du contrôleur du menu aux boutons du menu
+        menuView.getJouerButton().addActionListener(menuController);
+        menuView.getCommentJouerButton().addActionListener(menuController);
+        menuView.getQuitterButton().addActionListener(menuController);
 
-        SwingUtilities.invokeLater(() -> {
-            view.createAndShowGUI();
-        });
+        // Affichage de la vue du menu
+        menuView.show();
     }
 }

@@ -28,4 +28,6 @@ public class SudokuController implements ActionListener {
             }
         }
     }
+    MenuController menuController = new MenuController(menuView.getFrame());
+
 }
