@@ -8,7 +8,7 @@ public class SudokuController implements ActionListener {
         this.model = model;
         this.view = view;
 
-        // Ajout du contrôleur aux boutons de la vue
+        // Ajout du contrôleur aux zones de texte de la vue
         view.addController(this);
     }
 
@@ -17,17 +17,25 @@ public class SudokuController implements ActionListener {
         // Récupérer la source de l'événement
         Object source = e.getSource();
 
-        // Parcourir les boutons de la grille
+        // Parcourir les zones de texte de la grille
+        JTextField[][] gridTextFields = view.getGridTextFields();
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
-                if (source == view.getButton(row, col)) {
-                    // Action spécifique au bouton cliqué (par exemple, placer un nombre)
-                    // Vous pouvez appeler les méthodes de modèle ici, par exemple :
-                    // model.setNumber(row, col, num);
+                if (source == gridTextFields[row][col]) {
+                    // Action spécifique à la zone de texte cliquée
+                    // Par exemple, obtenir le numéro entré dans la case et le passer au modèle
+                    String input = gridTextFields[row][col].getText();
+                    if (!input.isEmpty()) {
+                        try {
+                            int num = Integer.parseInt(input);
+                            model.setNumber(row, col, num);
+                        } catch (NumberFormatException ex) {
+                            // Gérer l'erreur si l'utilisateur entre un texte non numérique
+                            view.showMessage("Veuillez entrer un numéro valide.");
+                        }
+                    }
                 }
             }
         }
     }
-    MenuController menuController = new MenuController(menuView.getFrame());
-
 }
