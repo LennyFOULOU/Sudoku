@@ -26,11 +26,11 @@ public class MenuView {
         commentJouerButton.setFont(buttonFont);
         quitterButton.setFont(buttonFont);
 
-        MenuController controller = new MenuController(frame); // Passer la référence de la fenêtre
-
-        jouerButton.addActionListener(controller);
-        commentJouerButton.addActionListener(controller);
-        quitterButton.addActionListener(controller);
+        // Ajout de l'écouteur d'événements au bouton "Jouer"
+        jouerButton.addActionListener(e -> {
+            frame.setVisible(false); // Masquer la fenêtre du menu
+            // Vous pouvez ajouter d'autres actions ici, comme l'ouverture de la vue du Sudoku
+        });
 
         panel.add(jouerButton);
         panel.add(commentJouerButton);
@@ -63,12 +63,4 @@ public class MenuView {
     public JFrame getFrame() {
         return frame;
     }
-
-    
-
-    /*public static void main(String[] args) {
-        // Création de l'interface du menu
-        MenuView menu = new MenuView();
-        menu.show();
-    }*/
 }
