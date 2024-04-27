@@ -10,11 +10,17 @@ public class MenuView {
 
     public MenuView() {
         frame = new JFrame();
-        frame.setSize(200, 200);
+        frame.setSize(600, 360);
         frame.setLocation(100, 100);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        ImageIcon backgroundIcon = new ImageIcon("Menu.png"); 
+        Image backgroundImage = backgroundIcon.getImage().getScaledInstance(frame.getWidth(), frame.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon scaledBackgroundIcon = new ImageIcon(backgroundImage);
+        JLabel backgroundLabel = new JLabel(backgroundIcon);
+
         panel = new JPanel();
+        panel.setOpaque(false);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         jouerButton = new JButton("Jouer");
@@ -26,15 +32,20 @@ public class MenuView {
         commentJouerButton.setFont(buttonFont);
         quitterButton.setFont(buttonFont);
 
-        // Ajout de l'écouteur d'événements au bouton "Jouer"
         jouerButton.addActionListener(e -> {
             frame.setVisible(false); // Masquer la fenêtre du menu
-            // Vous pouvez ajouter d'autres actions ici, comme l'ouverture de la vue du Sudoku
         });
 
         panel.add(jouerButton);
         panel.add(commentJouerButton);
         panel.add(quitterButton);
+
+        backgroundLabel.setLayout(new BorderLayout());
+        backgroundLabel.add(panel, BorderLayout.CENTER);
+
+        frame.setContentPane(backgroundLabel);
+        
+
 
         frame.add(panel, BorderLayout.SOUTH);
     }
