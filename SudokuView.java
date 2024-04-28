@@ -50,15 +50,56 @@ public class SudokuView {
         JMenuItem menuItem = new JMenuItem("Retour au Menu");
         JMenuItem verifier = new JMenuItem("Vérifier");
 
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                MenuView menuView = new MenuView();
+                menuView.show();
+            }
+        });
+
+        verifier.addActionListener(e -> {
+            int[][] sudokuGridData = getSudokuGridData();
+            VerifierModel verifierModel = new VerifierModel(sudokuGridData);
+            if (verifierModel.verify()) {
+                showMessage("La grille est correcte !");
+            } else {
+                showMessage("La grille contient des erreurs.");
+            }
+        });
+
         menu.add(menuItem);
         menu.add(verifier);
         menuBar.add(menu);
-
         frame.setJMenuBar(menuBar);
     }
 
-    // Method to display the Sudoku window
     public void display() {
         frame.setVisible(true);
+    }
+
+    public JTextField[][] getGridTextFields() {
+        return gridTextFields;
+    }
+
+    public void showMessage(String message) {
+        JOptionPane.showMessageDialog(frame, message);
+    }
+
+    public int[][] getSudokuGridData() {
+        int[][] gridData = new int[9][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                JTextField textField = gridTextFields[i][j];
+                String text = textField.getText();
+                if (text.isEmpty()) {
+                    gridData[i][j] = 0;
+                } else {
+                    gridData[i][j] = Integer.parseInt(text);
+                }
+            }
+        }
+        return gridData;
     }
 }

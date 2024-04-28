@@ -7,6 +7,7 @@ public class SudokuController implements ActionListener {
     public SudokuController(SudokuGrid model, SudokuView view) {
         this.model = model;
         this.view = view;
+        
 
         // Ajout du contrôleur aux zones de texte de la vue
         view.addController(this);
