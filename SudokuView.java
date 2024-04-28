@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SudokuView {
     private JFrame frame;
@@ -39,24 +41,24 @@ public class SudokuView {
         }
 
         frame.add(mainPanel);
+        createMenuBar();
     }
 
-    public void show() {
+    private void createMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menu = new JMenu("Menu");
+        JMenuItem menuItem = new JMenuItem("Retour au Menu");
+        JMenuItem verifier = new JMenuItem("Vérifier");
+
+        menu.add(menuItem);
+        menu.add(verifier);
+        menuBar.add(menu);
+
+        frame.setJMenuBar(menuBar);
+    }
+
+    // Method to display the Sudoku window
+    public void display() {
         frame.setVisible(true);
-    }
-
-    public JTextField[][] getGridTextFields() {
-        return gridTextFields;
-    }
-
-    public void showMessage(String message) {
-        JOptionPane.showMessageDialog(frame, message);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            SudokuView sudokuView = new SudokuView();
-            sudokuView.show();
-        });
     }
 }

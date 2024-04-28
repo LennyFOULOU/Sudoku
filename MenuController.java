@@ -4,21 +4,26 @@ import javax.swing.*;
 
 public class MenuController implements ActionListener {
     private JFrame fenetre;
+    private JButton jouerButton;
+    private JButton commentJouerButton;
+    private JButton quitterButton;
 
-    public MenuController(JFrame fenetre){
+    public MenuController(JFrame fenetre, JButton jouerButton, JButton commentJouerButton, JButton quitterButton) {
         this.fenetre = fenetre;
+        this.jouerButton = jouerButton;
+        this.commentJouerButton = commentJouerButton;
+        this.quitterButton = quitterButton;
     }
 
     public void actionPerformed(ActionEvent e) {
-        // Code à exécuter lorsque l'action est déclenchée
-        if (e.getActionCommand().equals("Jouer")) {
-            // Création et affichage de la vue SudokuView
-            SudokuView sudokuView = new SudokuView();
-            sudokuView.show();
-        } else if (e.getActionCommand().equals("Comment jouer ?")) {
-            JOptionPane.showMessageDialog(fenetre, "Instructions sur comment jouer...");
-        } else if (e.getActionCommand().equals("Quitter")) {
-            // Code pour le bouton "Quitter"
+        Object source = e.getSource();
+        if (source == jouerButton) {
+            fenetre.dispose(); // Fermer la fenêtre du menu
+            SudokuView sudokuView = new SudokuView(); // Créer une nouvelle instance de SudokuView
+            sudokuView.display(); // Afficher la fenêtre Sudoku
+        } else if (source == commentJouerButton) {
+            // Logique pour afficher les instructions
+        } else if (source == quitterButton) {
             System.exit(0); // Quitter l'application
         }
     }
