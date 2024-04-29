@@ -49,6 +49,7 @@ public class SudokuView {
         JMenu menu = new JMenu("Menu");
         JMenuItem menuItem = new JMenuItem("Retour au Menu");
         JMenuItem verifier = new JMenuItem("Vérifier");
+        JMenuItem sauvegarder = new JMenuItem("Sauvegarder");
 
         menuItem.addActionListener(new ActionListener() {
             @Override
@@ -69,8 +70,18 @@ public class SudokuView {
             }
         });
 
+        sauvegarder.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SauvegardeController sauvegardeController = new SauvegardeController();
+                int[][] sudokuGridData = getSudokuGridData();
+                sauvegardeController.saveData(sudokuGridData);
+            }
+        });
+
         menu.add(menuItem);
         menu.add(verifier);
+        menu.add(sauvegarder);
         menuBar.add(menu);
         frame.setJMenuBar(menuBar);
     }
