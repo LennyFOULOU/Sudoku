@@ -50,6 +50,7 @@ public class SudokuView {
         JMenuItem menuItem = new JMenuItem("Retour au Menu");
         JMenuItem verifier = new JMenuItem("Vérifier");
         JMenuItem sauvegarder = new JMenuItem("Sauvegarder");
+        JMenuItem charger = new JMenuItem("Charger Sauvegarde");
 
         menuItem.addActionListener(new ActionListener() {
             @Override
@@ -79,9 +80,27 @@ public class SudokuView {
             }
         });
 
+        charger.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int userSelection = fileChooser.showOpenDialog(frame);
+
+                if (userSelection == JFileChooser.APPROVE_OPTION) {
+                    ChargerSauvegardeController chargerController = new ChargerSauvegardeController();
+                    int[][] loadedGridData = chargerController.loadGridData(frame);
+                    if (loadedGridData != null) {
+                        // Charger les données dans les champs de la grille
+                        fillGridTextFields(loadedGridData);
+                    }
+                }
+            }
+        });
+
         menu.add(menuItem);
         menu.add(verifier);
         menu.add(sauvegarder);
+        menu.add(charger);
         menuBar.add(menu);
         frame.setJMenuBar(menuBar);
     }
@@ -112,5 +131,14 @@ public class SudokuView {
             }
         }
         return gridData;
+    }
+
+    public void fillGridTextFields(int[][] data) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                JTextField textField = gridTextFields[i][j];
+                textField.setText(String.valueOf(data[i][j]));
+            }
+        }
     }
 }

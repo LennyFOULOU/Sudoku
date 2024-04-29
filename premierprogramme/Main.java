@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+
 public class Main {
     public static void main(String[] args) {
         // Création de la vue du menu
@@ -24,28 +25,5 @@ public class Main {
 
         // Affichage de la vue du menu
         menuView.show();
-
-        // Chemin du fichier contenant les représentations canoniques Java des entiers
-        String cheminFichier = "bazzaou/dev/dev2/SAE21_2023/";
-
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(cheminFichier));
-            String line;
-
-            // Lire chaque ligne du fichier
-            while ((line = reader.readLine()) != null) {
-                // Ignorer les lignes vides
-                if (!line.isEmpty()) {
-                    // Convertir la ligne en entier
-                    int number = Integer.parseInt(line.replace("0", ""));
-                    System.out.println(number);
-                }
-            }
-            reader.close();
-        } catch (IOException e) {
-            System.err.println("Erreur de lecture du fichier : " + e.getMessage());
-        } catch (NumberFormatException e) {
-            System.err.println("Erreur de format des entiers dans le fichier : " + e.getMessage());
-        }
     }
 }
