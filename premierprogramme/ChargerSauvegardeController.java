@@ -18,7 +18,9 @@ public class ChargerSauvegardeController {
                 while ((line = reader.readLine()) != null && row < 9) {
                     for (int col = 0; col < 9 && col < line.length(); col++) {
                         char c = line.charAt(col);
-                        if (Character.isDigit(c)) {
+                        if (c == '.') {
+                            gridData[row][col] = 0; // Remplacer le caractère spécial par 0
+                        } else if (Character.isDigit(c)) {
                             gridData[row][col] = Character.getNumericValue(c);
                         } else {
                             gridData[row][col] = -1; // Laisser les cases vides avec une valeur non définie (par exemple -1)

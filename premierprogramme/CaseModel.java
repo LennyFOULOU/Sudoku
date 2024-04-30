@@ -1,7 +1,7 @@
 public class CaseModel {
     private int value;
 
-    public Case() {
+    public CaseModel() {
         this.value = 0; // Initialiser la case avec 0 (vide)
     }
 

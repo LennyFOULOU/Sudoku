@@ -7,6 +7,7 @@ public class SudokuView {
     private JFrame frame;
     private JPanel[][] regionPanels;
     private JTextField[][] gridTextFields;
+    private SudokuController controller; // Nouvel attribut pour stocker le contrôleur
 
     public SudokuView() {
         frame = new JFrame("Sudoku");
@@ -133,12 +134,19 @@ public class SudokuView {
         return gridData;
     }
 
-    public void fillGridTextFields(int[][] data) {
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                JTextField textField = gridTextFields[i][j];
-                textField.setText(String.valueOf(data[i][j]));
-            }
+public void fillGridTextFields(int[][] data) {
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            JTextField textField = gridTextFields[i][j];
+            int value = data[i][j];
+            // Si la valeur est 0, afficher une chaîne vide
+            textField.setText(value != 0 ? String.valueOf(value) : "");
         }
+    }
+}
+
+
+    public void addController(SudokuController controller) {
+        this.controller = controller;
     }
 }

@@ -1,4 +1,5 @@
 import java.awt.event.*;
+import javax.swing.JTextField;
 
 public class SudokuController implements ActionListener {
     private SudokuGrid model;

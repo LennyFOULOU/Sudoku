@@ -14,7 +14,7 @@ public class SauvegardeController {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
                 for (int i = 0; i < 9; i++) {
                     for (int j = 0; j < 9; j++) {
-                        // Si la case est vide, écrire un caractère spécial (par exemple, '.')
+                        // Si la case est vide (0), écrire un caractère spécial (par exemple, '.')
                         if (sudokuGridData[i][j] == 0) {
                             writer.write('.');
                         } else {
