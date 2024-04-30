@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MenuView {
     private JFrame frame;
@@ -14,7 +16,7 @@ public class MenuView {
         frame.setLocation(100, 100);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        ImageIcon backgroundIcon = new ImageIcon("Menu.png"); 
+        ImageIcon backgroundIcon = new ImageIcon("Menu.png");
         Image backgroundImage = backgroundIcon.getImage().getScaledInstance(frame.getWidth(), frame.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaledBackgroundIcon = new ImageIcon(backgroundImage);
         JLabel backgroundLabel = new JLabel(backgroundIcon);
@@ -24,6 +26,12 @@ public class MenuView {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         jouerButton = new JButton("Jouer");
+        jouerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openFileSelectionDialog(); // Ouvrir la boîte de dialogue de sélection de fichier
+            }
+        });
         commentJouerButton = new JButton("Comment jouer ?");
         quitterButton = new JButton("Quitter");
 
@@ -31,10 +39,6 @@ public class MenuView {
         jouerButton.setFont(buttonFont);
         commentJouerButton.setFont(buttonFont);
         quitterButton.setFont(buttonFont);
-
-        jouerButton.addActionListener(e -> {
-            frame.setVisible(false); // Masquer la fenêtre du menu
-        });
 
         panel.add(jouerButton);
         panel.add(commentJouerButton);
@@ -44,15 +48,30 @@ public class MenuView {
         backgroundLabel.add(panel, BorderLayout.CENTER);
 
         frame.setContentPane(backgroundLabel);
-        
-
-
-        frame.add(panel, BorderLayout.SOUTH);
     }
 
     public void show() {
         frame.setVisible(true);
     }
+
+    private void openFileSelectionDialog() {
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showOpenDialog(frame);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+            ChargerSauvegardeController charger = new ChargerSauvegardeController();
+            int[][] savedGridData = charger.loadGridData(frame);
+
+            if (savedGridData != null) {
+                frame.dispose();
+                SudokuView sudokuView = new SudokuView(savedGridData); // Créez une instance de SudokuView avec les données de la grille chargées
+                sudokuView.display(); // Affichez la vue de la grille avec les données chargées
+            }
+        }
+    }
+
+    // Méthodes getters pour les boutons et la fenêtre JFrame
 
     public JButton getJouerButton() {
         return jouerButton;
@@ -66,12 +85,17 @@ public class MenuView {
         return quitterButton;
     }
 
-    public void showMessage(String message) {
-        JOptionPane.showMessageDialog(frame, message);
-    }
-
-
     public JFrame getFrame() {
         return frame;
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                MenuView menu = new MenuView();
+                menu.show();
+            }
+        });
     }
 }

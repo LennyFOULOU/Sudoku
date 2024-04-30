@@ -8,7 +8,7 @@ public class SudokuView {
     private JPanel[][] regionPanels;
     private JTextField[][] gridTextFields;
 
-    public SudokuView() {
+    public SudokuView(int[][] gridData) {
         frame = new JFrame("Sudoku");
         frame.setSize(600, 600);
         frame.setLocationRelativeTo(null);
@@ -32,6 +32,10 @@ public class SudokuView {
                         textField.setFont(textFieldFont);
                         regionPanel.add(textField);
                         gridTextFields[m][n] = textField;
+                        if (gridData[m][n] != 0) {
+                            textField.setText(String.valueOf(gridData[m][n])); // Mettez à jour le champ de texte avec les données de la grille
+                            textField.setEditable(false); // Rendez le champ de texte non éditable
+                        }
                     }
                 }
 
@@ -43,6 +47,9 @@ public class SudokuView {
         frame.add(mainPanel);
         createMenuBar();
     }
+
+
+
 
     private void createMenuBar() {
         JMenuBar menuBar = new JMenuBar();

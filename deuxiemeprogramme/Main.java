@@ -26,7 +26,7 @@ public class Main {
         menuView.show();
 
         // Chemin du fichier contenant les représentations canoniques Java des entiers
-        String cheminFichier = "bazzaou/dev/dev2/SAE21_2023/";
+        String cheminFichier = "../";
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(cheminFichier));
