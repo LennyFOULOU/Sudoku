@@ -13,15 +13,15 @@ public class ChargerSauvegardeController {
                 String filePath = fileChooser.getSelectedFile().getAbsolutePath();
                 BufferedReader reader = new BufferedReader(new FileReader(filePath));
                 int[][] gridData = new int[9][9];
-                String line;
                 int row = 0;
+                String line;
                 while ((line = reader.readLine()) != null && row < 9) {
-                    for (int col = 0; col < 9 && col < line.length(); col++) {
-                        char c = line.charAt(col);
+                    int col = 0;
+                    for (int i = 0; i < line.length() && col < 9; i++) {
+                        char c = line.charAt(i);
                         if (Character.isDigit(c)) {
                             gridData[row][col] = Character.getNumericValue(c);
-                        } else {
-                            gridData[row][col] = -1; // Laisser les cases vides avec une valeur non définie (par exemple -1)
+                            col++;
                         }
                     }
                     row++;

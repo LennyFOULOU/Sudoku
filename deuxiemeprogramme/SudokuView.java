@@ -57,6 +57,8 @@ public class SudokuView {
         JMenuItem menuItem = new JMenuItem("Retour au Menu");
         JMenuItem verifier = new JMenuItem("Vérifier");
         JMenuItem sauvegarder = new JMenuItem("Sauvegarder");
+        JMenuItem resoudre = new JMenuItem("Résoudre Sudoku"); 
+
 
         menuItem.addActionListener(new ActionListener() {
             @Override
@@ -85,12 +87,42 @@ public class SudokuView {
                 sauvegardeController.saveData(sudokuGridData);
             }
         });
+        resoudre.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Résoudre le Sudoku ici
+                resolveSudoku();
+            }
+        });
+
 
         menu.add(menuItem);
         menu.add(verifier);
         menu.add(sauvegarder);
+        menu.add(resoudre); 
         menuBar.add(menu);
         frame.setJMenuBar(menuBar);
+    }
+    private void resolveSudoku() {
+        int[][] sudokuGridData = getSudokuGridData();
+        SudokuSolverModel solverModel = new SudokuSolverModel(sudokuGridData);
+        if (solverModel.solve()) {
+            int[][] solvedGrid = solverModel.getGrid();
+            updateSudokuGrid(solvedGrid); // Mettre à jour la grille avec la solution
+        } else {
+            showMessage("Impossible de résoudre le Sudoku. Vérifiez la validité de la grille.");
+        }
+    }
+
+    private void updateSudokuGrid(int[][] solvedGrid) {
+        // Mettre à jour les champs de texte avec la solution
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                JTextField textField = gridTextFields[i][j];
+                textField.setText(String.valueOf(solvedGrid[i][j]));
+                textField.setEditable(false); // Rendre les champs de texte non éditables après la résolution
+            }
+        }
     }
 
     public void display() {
