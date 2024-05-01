@@ -20,4 +20,8 @@ public class VerifierView {
     public JButton getVerifierButton() {
         return verifierButton;
     }
+
+    public JFrame getFrame() {
+        return frame;
+    }
 }

@@ -61,7 +61,7 @@ public class MenuView {
         if (result == JFileChooser.APPROVE_OPTION) {
             String filePath = fileChooser.getSelectedFile().getAbsolutePath();
             ChargerSauvegardeController charger = new ChargerSauvegardeController();
-            int[][] savedGridData = charger.loadGridData(frame);
+            int[][] savedGridData = charger.loadGridData(filePath, frame);
 
             if (savedGridData != null) {
                 frame.dispose();

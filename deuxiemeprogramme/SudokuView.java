@@ -2,11 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class SudokuView {
     private JFrame frame;
     private JPanel[][] regionPanels;
     private JTextField[][] gridTextFields;
+    private ArrayList<SudokuController> controllers; 
+
 
     public SudokuView(int[][] gridData) {
         frame = new JFrame("Sudoku");
@@ -19,6 +22,7 @@ public class SudokuView {
         regionPanels = new JPanel[3][3];
         gridTextFields = new JTextField[9][9];
         Font textFieldFont = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
+        controllers = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -46,6 +50,9 @@ public class SudokuView {
 
         frame.add(mainPanel);
         createMenuBar();
+    }
+    public void addController(SudokuController controller) {
+        controllers.add(controller);
     }
 
 

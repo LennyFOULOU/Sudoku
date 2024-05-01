@@ -26,26 +26,6 @@ public class Main {
         menuView.show();
 
         // Chemin du fichier contenant les représentations canoniques Java des entiers
-        String cheminFichier = "../";
-
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(cheminFichier));
-            String line;
-
-            // Lire chaque ligne du fichier
-            while ((line = reader.readLine()) != null) {
-                // Ignorer les lignes vides
-                if (!line.isEmpty()) {
-                    // Convertir la ligne en entier
-                    int number = Integer.parseInt(line.replace("0", ""));
-                    System.out.println(number);
-                }
-            }
-            reader.close();
-        } catch (IOException e) {
-            System.err.println("Erreur de lecture du fichier : " + e.getMessage());
-        } catch (NumberFormatException e) {
-            System.err.println("Erreur de format des entiers dans le fichier : " + e.getMessage());
-        }
     }
+
 }

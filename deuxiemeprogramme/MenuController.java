@@ -1,7 +1,7 @@
 import javax.swing.*;
-import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
-
+import java.awt.event.ActionListener;
 
 public class MenuController implements ActionListener {
     private JFrame frame;
@@ -33,9 +33,10 @@ public class MenuController implements ActionListener {
         int result = fileChooser.showOpenDialog(frame);
 
         if (result == JFileChooser.APPROVE_OPTION) {
-            String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+            File selectedFile = fileChooser.getSelectedFile();
+            String filePath = selectedFile.getAbsolutePath();
             ChargerSauvegardeController charger = new ChargerSauvegardeController();
-            int[][] savedGridData = charger.loadGridData(frame);
+            int[][] savedGridData = charger.loadGridData(filePath, frame);
 
             if (savedGridData != null) {
                 frame.dispose();

@@ -1,4 +1,6 @@
-import java.awt.event.*;
+import javax.swing.JTextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SudokuController implements ActionListener {
     private SudokuGrid model;
@@ -7,7 +9,6 @@ public class SudokuController implements ActionListener {
     public SudokuController(SudokuGrid model, SudokuView view) {
         this.model = model;
         this.view = view;
-        
 
         // Ajout du contrôleur aux zones de texte de la vue
         view.addController(this);
