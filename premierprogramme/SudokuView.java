@@ -5,9 +5,8 @@ import java.awt.event.ActionListener;
 
 public class SudokuView {
     private JFrame frame;
-    private JPanel[][] regionPanels;
     private JTextField[][] gridTextFields;
-    private SudokuController controller; // Nouvel attribut pour stocker le contrôleur
+    private SudokuController controller;
 
     public SudokuView() {
         frame = new JFrame("Sudoku");
@@ -17,27 +16,25 @@ public class SudokuView {
 
         JPanel mainPanel = new JPanel(new GridLayout(3, 3));
 
-        regionPanels = new JPanel[3][3];
         gridTextFields = new JTextField[9][9];
         Font textFieldFont = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                JPanel regionPanel = new JPanel(new GridLayout(3, 3, 2, 2));
-                regionPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+                JPanel subPanel = new JPanel(new GridLayout(3, 3));
+                subPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
-                for (int m = i * 3; m < i * 3 + 3; m++) {
-                    for (int n = j * 3; n < j * 3 + 3; n++) {
+                for (int m = i * 3; m < (i + 1) * 3; m++) {
+                    for (int n = j * 3; n < (j + 1) * 3; n++) {
                         JTextField textField = new JTextField();
                         textField.setPreferredSize(new Dimension(50, 50));
                         textField.setFont(textFieldFont);
-                        regionPanel.add(textField);
+                        subPanel.add(textField);
                         gridTextFields[m][n] = textField;
                     }
                 }
 
-                regionPanels[i][j] = regionPanel;
-                mainPanel.add(regionPanel);
+                mainPanel.add(subPanel);
             }
         }
 
@@ -49,8 +46,8 @@ public class SudokuView {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Menu");
         JMenuItem menuItem = new JMenuItem("Retour au Menu");
-        JMenuItem verifier = new JMenuItem("Vérifier");
         JMenuItem sauvegarder = new JMenuItem("Sauvegarder");
+        JMenuItem verifier = new JMenuItem("Vérifier");
         JMenuItem charger = new JMenuItem("Charger Sauvegarde");
 
         menuItem.addActionListener(new ActionListener() {
@@ -59,6 +56,15 @@ public class SudokuView {
                 frame.dispose();
                 MenuView menuView = new MenuView();
                 menuView.show();
+            }
+        });
+
+        sauvegarder.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SauvegardeController sauvegardeController = new SauvegardeController();
+                int[][] sudokuGridData = getSudokuGridData();
+                sauvegardeController.saveData(sudokuGridData, frame);
             }
         });
 
@@ -72,15 +78,6 @@ public class SudokuView {
             }
         });
 
-        sauvegarder.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SauvegardeController sauvegardeController = new SauvegardeController();
-                int[][] sudokuGridData = getSudokuGridData();
-                sauvegardeController.saveData(sudokuGridData);
-            }
-        });
-
         charger.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -88,8 +85,9 @@ public class SudokuView {
                 int userSelection = fileChooser.showOpenDialog(frame);
 
                 if (userSelection == JFileChooser.APPROVE_OPTION) {
+                    String filePath = fileChooser.getSelectedFile().getAbsolutePath();
                     ChargerSauvegardeController chargerController = new ChargerSauvegardeController();
-                    int[][] loadedGridData = chargerController.loadGridData(frame);
+                    int[][] loadedGridData = chargerController.loadGridData(filePath, frame);
                     if (loadedGridData != null) {
                         // Charger les données dans les champs de la grille
                         fillGridTextFields(loadedGridData);
@@ -99,8 +97,8 @@ public class SudokuView {
         });
 
         menu.add(menuItem);
-        menu.add(verifier);
         menu.add(sauvegarder);
+        menu.add(verifier);
         menu.add(charger);
         menuBar.add(menu);
         frame.setJMenuBar(menuBar);
@@ -134,17 +132,16 @@ public class SudokuView {
         return gridData;
     }
 
-public void fillGridTextFields(int[][] data) {
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-            JTextField textField = gridTextFields[i][j];
-            int value = data[i][j];
-            // Si la valeur est 0, afficher une chaîne vide
-            textField.setText(value != 0 ? String.valueOf(value) : "");
+    public void fillGridTextFields(int[][] data) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                JTextField textField = gridTextFields[i][j];
+                int value = data[i][j];
+                // Si la valeur est 0, afficher une chaîne vide
+                textField.setText(value != 0 ? String.valueOf(value) : "");
+            }
         }
     }
-}
-
 
     public void addController(SudokuController controller) {
         this.controller = controller;

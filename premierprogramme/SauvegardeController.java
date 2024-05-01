@@ -4,9 +4,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class SauvegardeController {
-    public void saveData(int[][] sudokuGridData) {
+    public void saveData(int[][] sudokuGridData, JFrame frame) {
         JFileChooser fileChooser = new JFileChooser();
-        int userSelection = fileChooser.showSaveDialog(null);
+        int userSelection = fileChooser.showSaveDialog(frame);
 
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             try {
@@ -14,11 +14,9 @@ public class SauvegardeController {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
                 for (int i = 0; i < 9; i++) {
                     for (int j = 0; j < 9; j++) {
-                        // Si la case est vide (0), écrire un caractère spécial (par exemple, '.')
                         if (sudokuGridData[i][j] == 0) {
                             writer.write('.');
                         } else {
-                            // Sinon, écrire la valeur de la case
                             writer.write(String.valueOf(sudokuGridData[i][j]));
                         }
                     }
