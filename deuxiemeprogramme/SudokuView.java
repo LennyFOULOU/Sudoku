@@ -63,7 +63,6 @@ public class SudokuView {
         JMenu menu = new JMenu("Menu");
         JMenuItem menuItem = new JMenuItem("Retour au Menu");
         JMenuItem verifier = new JMenuItem("Vérifier");
-        JMenuItem sauvegarder = new JMenuItem("Sauvegarder");
         JMenuItem resoudre = new JMenuItem("Résoudre Sudoku"); 
 
 
@@ -85,15 +84,6 @@ public class SudokuView {
                 showMessage("La grille contient des erreurs.");
             }
         });
-
-        sauvegarder.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SauvegardeController sauvegardeController = new SauvegardeController();
-                int[][] sudokuGridData = getSudokuGridData();
-                sauvegardeController.saveData(sudokuGridData);
-            }
-        });
         resoudre.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -105,7 +95,6 @@ public class SudokuView {
 
         menu.add(menuItem);
         menu.add(verifier);
-        menu.add(sauvegarder);
         menu.add(resoudre); 
         menuBar.add(menu);
         frame.setJMenuBar(menuBar);
