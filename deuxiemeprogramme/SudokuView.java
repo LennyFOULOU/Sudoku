@@ -135,7 +135,7 @@ public class SudokuView {
     }
 
     private void showSuccessImage() {
-        ImageIcon successIcon = new ImageIcon("sherk.png"); // Chemin vers l'image de succès (redimensionnée)
+        ImageIcon successIcon = new ImageIcon("shrek.png"); // Chemin vers l'image de succès (redimensionnée)
         Image img = successIcon.getImage();
         Image newImg = img.getScaledInstance(500, 300, Image.SCALE_SMOOTH); // Redimensionner l'image à la taille souhaitée
         ImageIcon newIcon = new ImageIcon(newImg);
