@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.awt.Image;
 
 public class SudokuView {
     private JFrame frame;
@@ -13,7 +14,7 @@ public class SudokuView {
 
     public SudokuView(int[][] gridData) {
         frame = new JFrame("Sudoku");
-        frame.setSize(600, 600);
+        frame.setSize(600, 600); // Ajustement de la taille de la fenêtre
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -116,6 +117,7 @@ public class SudokuView {
         if (solverModel.solve()) {
             int[][] solvedGrid = solverModel.getGrid();
             updateSudokuGrid(solvedGrid); // Mettre à jour la grille avec la solution
+            showSuccessImage(); // Afficher l'image de succès
         } else {
             showMessage("Impossible de résoudre le Sudoku. Vérifiez la validité de la grille.");
         }
@@ -130,6 +132,15 @@ public class SudokuView {
                 textField.setEditable(false); // Rendre les champs de texte non éditables après la résolution
             }
         }
+    }
+
+    private void showSuccessImage() {
+        ImageIcon successIcon = new ImageIcon("sherk.png"); // Chemin vers l'image de succès (redimensionnée)
+        Image img = successIcon.getImage();
+        Image newImg = img.getScaledInstance(500, 300, Image.SCALE_SMOOTH); // Redimensionner l'image à la taille souhaitée
+        ImageIcon newIcon = new ImageIcon(newImg);
+        JLabel successLabel = new JLabel(newIcon);
+        JOptionPane.showMessageDialog(frame, successLabel, "Sudoku Résolu", JOptionPane.PLAIN_MESSAGE);
     }
 
     public void display() {
