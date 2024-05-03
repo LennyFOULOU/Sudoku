@@ -11,10 +11,9 @@ public class SudokuView {
     private JTextField[][] gridTextFields;
     private ArrayList<SudokuController> controllers; 
 
-
     public SudokuView(int[][] gridData) {
         frame = new JFrame("Sudoku");
-        frame.setSize(600, 600); // Ajustement de la taille de la fenêtre
+        frame.setSize(600, 600);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -38,8 +37,8 @@ public class SudokuView {
                         regionPanel.add(textField);
                         gridTextFields[m][n] = textField;
                         if (gridData[m][n] != 0) {
-                            textField.setText(String.valueOf(gridData[m][n])); // Mettez à jour le champ de texte avec les données de la grille
-                            textField.setEditable(false); // Rendez le champ de texte non éditable
+                            textField.setText(String.valueOf(gridData[m][n]));
+                            textField.setEditable(false);
                         }
                     }
                 }
@@ -52,12 +51,10 @@ public class SudokuView {
         frame.add(mainPanel);
         createMenuBar();
     }
+
     public void addController(SudokuController controller) {
         controllers.add(controller);
     }
-
-
-
 
     private void createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
@@ -65,7 +62,6 @@ public class SudokuView {
         JMenuItem menuItem = new JMenuItem("Retour au Menu");
         JMenuItem verifier = new JMenuItem("Vérifier");
         JMenuItem resoudre = new JMenuItem("Résoudre Sudoku"); 
-
 
         menuItem.addActionListener(new ActionListener() {
             @Override
@@ -85,14 +81,13 @@ public class SudokuView {
                 showMessage("La grille contient des erreurs.");
             }
         });
+
         resoudre.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Résoudre le Sudoku ici
                 resolveSudoku();
             }
         });
-
 
         menu.add(menuItem);
         menu.add(verifier);
@@ -100,33 +95,33 @@ public class SudokuView {
         menuBar.add(menu);
         frame.setJMenuBar(menuBar);
     }
+
     private void resolveSudoku() {
-        int[][] sudokuGridData = getSudokuGridData();
+        int[][] sudokuGridData = this.getSudokuGridData();
         SudokuSolverModel solverModel = new SudokuSolverModel(sudokuGridData);
         if (solverModel.solve()) {
             int[][] solvedGrid = solverModel.getGrid();
-            updateSudokuGrid(solvedGrid); // Mettre à jour la grille avec la solution
-            showSuccessImage(); // Afficher l'image de succès
+            updateSudokuGrid(solvedGrid);
+            showSuccessImage();
         } else {
             showMessage("Impossible de résoudre le Sudoku. Vérifiez la validité de la grille.");
         }
     }
 
     private void updateSudokuGrid(int[][] solvedGrid) {
-        // Mettre à jour les champs de texte avec la solution
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 JTextField textField = gridTextFields[i][j];
                 textField.setText(String.valueOf(solvedGrid[i][j]));
-                textField.setEditable(false); // Rendre les champs de texte non éditables après la résolution
+                textField.setEditable(false);
             }
         }
     }
 
     private void showSuccessImage() {
-        ImageIcon successIcon = new ImageIcon("shrek.png"); // Chemin vers l'image de succès (redimensionnée)
+        ImageIcon successIcon = new ImageIcon("shrek.png");
         Image img = successIcon.getImage();
-        Image newImg = img.getScaledInstance(500, 300, Image.SCALE_SMOOTH); // Redimensionner l'image à la taille souhaitée
+        Image newImg = img.getScaledInstance(500, 300, Image.SCALE_SMOOTH);
         ImageIcon newIcon = new ImageIcon(newImg);
         JLabel successLabel = new JLabel(newIcon);
         JOptionPane.showMessageDialog(frame, successLabel, "Sudoku Résolu", JOptionPane.PLAIN_MESSAGE);

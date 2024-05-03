@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.io.File;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,35 +13,23 @@ public class MenuController implements ActionListener {
         this.jouerButton = jouerButton;
         this.commentJouerButton = commentJouerButton;
         this.quitterButton = quitterButton;
+
+        // Ajout des écouteurs d'événements
+        jouerButton.addActionListener(this);
+        commentJouerButton.addActionListener(this);
+        quitterButton.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jouerButton) {
-            openFileSelectionDialog(); // Ouvrir la boîte de dialogue de sélection de fichier
+            // La logique spécifique pour jouer sera traitée dans MenuView
+            // Nous n'avons pas besoin d'une action spécifique ici
         } else if (e.getSource() == commentJouerButton) {
             // Logique pour afficher les instructions pour jouer
         } else if (e.getSource() == quitterButton) {
             // Logique pour quitter l'application
             System.exit(0);
-        }
-    }
-
-    private void openFileSelectionDialog() {
-        JFileChooser fileChooser = new JFileChooser();
-        int result = fileChooser.showOpenDialog(frame);
-
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            String filePath = selectedFile.getAbsolutePath();
-            ChargerSauvegardeController charger = new ChargerSauvegardeController();
-            int[][] savedGridData = charger.loadGridData(filePath, frame);
-
-            if (savedGridData != null) {
-                frame.dispose();
-                SudokuView sudokuView = new SudokuView(savedGridData); // Passer les données de la grille
-                sudokuView.display();
-            }
         }
     }
 }

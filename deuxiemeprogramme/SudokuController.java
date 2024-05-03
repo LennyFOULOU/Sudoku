@@ -30,7 +30,7 @@ public class SudokuController implements ActionListener {
                     if (!input.isEmpty()) {
                         try {
                             int num = Integer.parseInt(input);
-                            model.setNumber(row, col, num);
+                            model.setNumber(row, col, num); // Mettre à jour le modèle avec le numéro entré
                         } catch (NumberFormatException ex) {
                             // Gérer l'erreur si l'utilisateur entre un texte non numérique
                             view.showMessage("Veuillez entrer un numéro valide.");
