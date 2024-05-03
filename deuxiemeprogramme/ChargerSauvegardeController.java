@@ -10,19 +10,25 @@ public class ChargerSauvegardeController {
             int[][] gridData = new int[9][9];
             String line;
             int row = 0;
+            int col = 0;
+
             while ((line = reader.readLine()) != null && row < 9) {
-                for (int col = 0; col < 9 && col < line.length(); col++) {
-                    char c = line.charAt(col);
-                    if (c == '.') {
-                        gridData[row][col] = 0;
-                    } else if (Character.isDigit(c)) {
-                        gridData[row][col] = Character.getNumericValue(c);
-                    } else {
-                        gridData[row][col] = -1;
+                // Parcourir chaque caractère de la ligne
+                for (int i = 0; i < line.length(); i++) {
+                    char c = line.charAt(i);
+                    if (Character.isDigit(c) || c == '0') { // Inclure les caractères '0'
+                        int decimalValue = convertToDecimal(c); // Convertir en décimal
+                        gridData[row][col] = decimalValue;
+                        col++; // Passer à la colonne suivante
+                        // Passer à la ligne suivante si nous avons atteint la fin de la ligne
+                        if (col == 9) {
+                            col = 0;
+                            row++;
+                        }
                     }
                 }
-                row++;
             }
+
             reader.close();
             System.out.println("Grille chargée avec succès.");
             return gridData;
@@ -30,5 +36,14 @@ public class ChargerSauvegardeController {
             JOptionPane.showMessageDialog(frame, "Erreur lors du chargement de la grille : " + e.getMessage());
         }
         return null;
+    }
+
+    // Méthode pour convertir un caractère en entier décimal
+    private int convertToDecimal(char c) {
+        if (Character.isDigit(c)) {
+            return Character.getNumericValue(c);
+        } else {
+            return 0; // Pour les caractères autres que les chiffres, nous retournons 0
+        }
     }
 }
