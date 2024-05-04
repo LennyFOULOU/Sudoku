@@ -14,7 +14,7 @@ public class Main {
         JButton quitterButton = menuView.getQuitterButton();
 
         // Création du contrôleur du menu
-        JFrame frame = menuView.getFrame(); // Obtenez la JFrame de la vue du menu
+        JFrame frame = menuView.getFrame(); 
         MenuController menuController = new MenuController(frame, jouerButton, commentJouerButton, quitterButton);
 
         // Ajout du contrôleur du menu aux boutons du menu
@@ -25,7 +25,6 @@ public class Main {
         // Affichage de la vue du menu
         menuView.show();
 
-        // Chemin du fichier contenant les représentations canoniques Java des entiers
     }
 
 }
