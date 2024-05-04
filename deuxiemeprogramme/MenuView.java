@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class MenuView {
     private JFrame frame;
@@ -24,7 +23,7 @@ public class MenuView {
 
         panel = new JPanel();
         panel.setOpaque(false);
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); // Utilise un BoxLayout avec orientation verticale
 
         jouerButton = new JButton("Jouer");
         jouerButton.addActionListener(new ActionListener() {
@@ -46,7 +45,7 @@ public class MenuView {
         panel.add(quitterButton);
 
         backgroundLabel.setLayout(new BorderLayout());
-        backgroundLabel.add(panel, BorderLayout.CENTER);
+        backgroundLabel.add(panel, BorderLayout.SOUTH); // Ajoute le panneau en bas de la fenêtre
 
         frame.setContentPane(backgroundLabel);
     }
@@ -61,14 +60,7 @@ public class MenuView {
 
         if (result == JFileChooser.APPROVE_OPTION) {
             String filePath = fileChooser.getSelectedFile().getAbsolutePath();
-            ChargerSauvegardeController charger = new ChargerSauvegardeController();
-            int[][] savedGridData = charger.loadGridData(filePath, frame);
-
-            if (savedGridData != null) {
-                frame.dispose();
-                SudokuView sudokuView = new SudokuView(savedGridData); // Créez une instance de SudokuView avec les données de la grille chargées
-                sudokuView.display(); // Affichez la vue de la grille avec les données chargées
-            }
+            // Implémentation de la logique de chargement de fichier
         }
     }
 
