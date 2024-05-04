@@ -8,27 +8,38 @@ JVMFLAGS =
 
 ### REGLES ESSENTIELLES ###
 
-Main.class : Main.java MenuView.class MenuController.class VerifierModel.class SudokuView.class SudokuController.class ChargerSauvegardeController.class
+Main.class : Main.java MenuController.class MenuView.class ChargerSauvegardeController.class SudokuGrid.class SudokuController.class SudokuView.class VerifierController.class VerifierModel.class VerifierView.class SauvegardeController.class
 	${JC} ${JCFLAGS} Main.java
-
-MenuView.class : MenuView.java MenuController.class
-	${JC} ${JCFLAGS} MenuView.java
 
 MenuController.class : MenuController.java
 	${JC} ${JCFLAGS} MenuController.java
 
-VerifierModel.class : VerifierModel.java SudokuGrid.class
-	${JC} ${JCFLAGS} VerifierModel.java
-
-SudokuView.class : SudokuView.java VerifierModel.class SudokuGrid.class
-	${JC} ${JCFLAGS} SudokuView.java
-
-SudokuController.class : SudokuController.java
-	${JC} ${JCFLAGS} SudokuController.java
+MenuView.class : MenuView.java
+	${JC} ${JCFLAGS} MenuView.java
 
 ChargerSauvegardeController.class : ChargerSauvegardeController.java
 	${JC} ${JCFLAGS} ChargerSauvegardeController.java
 
+SudokuGrid.class : SudokuGrid.java
+	${JC} ${JCFLAGS} SudokuGrid.java
+
+SudokuController.class : SudokuController.java
+	${JC} ${JCFLAGS} SudokuController.java
+
+SudokuView.class : SudokuView.java
+	${JC} ${JCFLAGS} SudokuView.java
+
+VerifierController.class : VerifierController.java
+	${JC} ${JCFLAGS} VerifierController.java
+
+VerifierModel.class : VerifierModel.java
+	${JC} ${JCFLAGS} VerifierModel.java
+
+VerifierView.class : VerifierView.java
+	${JC} ${JCFLAGS} VerifierView.java
+
+SauvegardeController.class : SauvegardeController.java
+	${JC} ${JCFLAGS} SauvegardeController.java
 
 ### REGLES OPTIONNELLES ###
 
