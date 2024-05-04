@@ -1,12 +1,17 @@
 public class SudokuSolverModel {
     private int[][] grid;
+    private Timer timer;
 
     public SudokuSolverModel(int[][] grid) {
         this.grid = grid;
+        timer = new Timer();
     }
 
     public boolean solve() {
-        return solveSudoku(0, 0);
+        timer.start(); // Démarrage du timer avant la résolution
+        boolean solved = solveSudoku(0, 0);
+        timer.stop(); // Arrêt du timer après la résolution
+        return solved;
     }
 
     private boolean solveSudoku(int row, int col) {
@@ -56,5 +61,9 @@ public class SudokuSolverModel {
 
     public int[][] getGrid() {
         return grid;
+    }
+
+    public long getElapsedTime() {
+        return timer.getElapsedTime(); // Obtention du temps écoulé après la résolution
     }
 }

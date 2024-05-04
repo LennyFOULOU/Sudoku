@@ -3,17 +3,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.awt.Image;
+import javax.swing.Timer;
 
 public class SudokuView {
     private JFrame frame;
     private JPanel[][] regionPanels;
     private JTextField[][] gridTextFields;
-    private ArrayList<SudokuController> controllers; 
+    private ArrayList<SudokuController> controllers;
+    private Timer timer;
+    private JLabel timerLabel;
 
     public SudokuView(int[][] gridData) {
         frame = new JFrame("Sudoku");
-        frame.setSize(600, 600);
+        frame.setSize(600, 650);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -48,6 +50,11 @@ public class SudokuView {
             }
         }
 
+        timerLabel = new JLabel();
+        timerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        timerLabel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
+        frame.add(timerLabel, BorderLayout.SOUTH);
+
         frame.add(mainPanel);
         createMenuBar();
     }
@@ -61,7 +68,7 @@ public class SudokuView {
         JMenu menu = new JMenu("Menu");
         JMenuItem menuItem = new JMenuItem("Retour au Menu");
         JMenuItem verifier = new JMenuItem("Vérifier");
-        JMenuItem resoudre = new JMenuItem("Résoudre Sudoku"); 
+        JMenuItem resoudre = new JMenuItem("Résoudre Sudoku");
 
         menuItem.addActionListener(new ActionListener() {
             @Override
@@ -91,17 +98,25 @@ public class SudokuView {
 
         menu.add(menuItem);
         menu.add(verifier);
-        menu.add(resoudre); 
+        menu.add(resoudre);
         menuBar.add(menu);
         frame.setJMenuBar(menuBar);
     }
 
     private void resolveSudoku() {
+        startTimer(); // Démarre le timer lorsque l'utilisateur lance la résolution automatique
+        long startTime = System.nanoTime(); // Temps de départ
+
         int[][] sudokuGridData = this.getSudokuGridData();
         SudokuSolverModel solverModel = new SudokuSolverModel(sudokuGridData);
         if (solverModel.solve()) {
+            long endTime = System.nanoTime(); // Temps d'arrêt
+            long elapsedTime = endTime - startTime; // Temps écoulé en nanosecondes
+
             int[][] solvedGrid = solverModel.getGrid();
             updateSudokuGrid(solvedGrid);
+            stopTimer(); // Arrête le timer après la résolution
+            timerLabel.setText("Temps écoulé : " + elapsedTime + " ns"); // Met à jour le label du timer avec le temps écoulé
             showSuccessImage();
         } else {
             showMessage("Impossible de résoudre le Sudoku. Vérifiez la validité de la grille.");
@@ -115,6 +130,29 @@ public class SudokuView {
                 textField.setText(String.valueOf(solvedGrid[i][j]));
                 textField.setEditable(false);
             }
+        }
+    }
+
+    private void startTimer() {
+        timerLabel.setText("Temps écoulé : "); // Initialiser avec une chaîne vide
+    
+        long startTime = System.nanoTime(); // Utilisation de System.nanoTime() pour une meilleure précision
+    
+        timer = new Timer(100, new ActionListener() { // Timer déclenche toutes les 100 millisecondes
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                long elapsedTime = System.nanoTime() - startTime;
+                long milliseconds = elapsedTime / 1000000; // Convertir en millisecondes
+                String timeString = String.valueOf(milliseconds) + " ms"; // Formatage pour inclure les millisecondes
+                timerLabel.setText("Temps écoulé : " + timeString);
+            }
+        });
+        timer.start();
+    }
+
+    private void stopTimer() {
+        if (timer != null) {
+            timer.stop();
         }
     }
 
