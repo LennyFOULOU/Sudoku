@@ -5,9 +5,7 @@ JAVAC = javac
 JFLAGS = -g
 
 # Fichiers sources
-SOURCES = ChargerSauvegardeController.java Main.java MenuController.java MenuView.java \
-          SudokuController.java SudokuGrid.java SudokuSolverModel.java SudokuView.java \
-          Timer.java VerifierController.java VerifierModel.java VerifierView.java
+SOURCES = MenuController.java MenuView.java ChargerSauvegardeController.java SudokuGrid.java SudokuController.java SudokuView.java SudokuSolverModel.java Timer.java VerifierController.java VerifierModel.java VerifierView.java Main.java
 
 # Fichiers de classe
 CLASSES = $(SOURCES:.java=.class)
