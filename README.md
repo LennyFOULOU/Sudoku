@@ -1,2 +1,0 @@
-# SAE_Sudoku
-

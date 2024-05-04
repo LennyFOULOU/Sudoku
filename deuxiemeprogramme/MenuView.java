@@ -66,8 +66,8 @@ public class MenuView {
 
             if (savedGridData != null) {
                 frame.dispose();
-                SudokuView sudokuView = new SudokuView(savedGridData); // Créez une instance de SudokuView avec les données de la grille chargées
-                sudokuView.display(); // Affichez la vue de la grille avec les données chargées
+                SudokuView sudokuView = new SudokuView(savedGridData); 
+                sudokuView.display(); // Affichage de la vue de la grille avec les données chargées
             }
         }
     }

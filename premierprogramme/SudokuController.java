@@ -25,7 +25,6 @@ public class SudokuController implements ActionListener {
             for (int col = 0; col < 9; col++) {
                 if (source == gridTextFields[row][col]) {
                     // Action spécifique à la zone de texte cliquée
-                    // Par exemple, obtenir le numéro entré dans la case et le passer au modèle
                     String input = gridTextFields[row][col].getText();
                     if (!input.isEmpty()) {
                         try {

@@ -19,10 +19,10 @@ public class MenuController implements ActionListener {
         Object source = e.getSource();
         if (source == jouerButton) {
             fenetre.dispose(); // Fermer la fenêtre du menu
-            SudokuView sudokuView = new SudokuView(); // Créer une nouvelle instance de SudokuView
+            SudokuView sudokuView = new SudokuView(); 
             sudokuView.display(); // Afficher la fenêtre Sudoku
         } else if (source == commentJouerButton) {
-            // Logique pour afficher les instructions
+           
         } else if (source == quitterButton) {
             System.exit(0); // Quitter l'application
         }

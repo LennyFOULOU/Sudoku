@@ -74,7 +74,6 @@ public class SudokuGrid {
     }
 
     public boolean solve() {
-        // Résout la grille de Sudoku (implémentation à compléter)
         return solveSudoku();
     }
 
@@ -98,5 +97,4 @@ public class SudokuGrid {
         return true;
     }
 
-    // Méthodes pour charger et sauvegarder la grille depuis un fichier (à implémenter)
 }

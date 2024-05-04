@@ -15,7 +15,7 @@ public class Main {
         JButton quitterButton = menuView.getQuitterButton();
 
         // Création du contrôleur du menu
-        JFrame frame = menuView.getFrame(); // Obtenez la JFrame de la vue du menu
+        JFrame frame = menuView.getFrame(); 
         MenuController menuController = new MenuController(frame, jouerButton, commentJouerButton, quitterButton);
 
         // Ajout du contrôleur du menu aux boutons du menu

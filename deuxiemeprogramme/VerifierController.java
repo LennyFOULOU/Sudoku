@@ -12,7 +12,6 @@ public class VerifierController {
     }
 
     public void showMessage(String message) {
-        // Obtenez la référence à la fenêtre JFrame à partir de VerifierView
         JFrame frame = view.getFrame();
 
         // Afficher le message dans une boîte de dialogue

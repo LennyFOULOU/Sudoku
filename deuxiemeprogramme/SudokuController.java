@@ -10,7 +10,6 @@ public class SudokuController implements ActionListener {
         this.model = model;
         this.view = view;
 
-        // Ajout du contrôleur aux zones de texte de la vue
         view.addController(this);
     }
 
@@ -25,12 +24,11 @@ public class SudokuController implements ActionListener {
             for (int col = 0; col < 9; col++) {
                 if (source == gridTextFields[row][col]) {
                     // Action spécifique à la zone de texte cliquée
-                    // Par exemple, obtenir le numéro entré dans la case et le passer au modèle
                     String input = gridTextFields[row][col].getText();
                     if (!input.isEmpty()) {
                         try {
                             int num = Integer.parseInt(input);
-                            model.setNumber(row, col, num); // Mettre à jour le modèle avec le numéro entré
+                            model.setNumber(row, col, num); 
                         } catch (NumberFormatException ex) {
                             // Gérer l'erreur si l'utilisateur entre un texte non numérique
                             view.showMessage("Veuillez entrer un numéro valide.");
