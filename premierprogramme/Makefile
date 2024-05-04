@@ -8,7 +8,7 @@ JVMFLAGS =
 
 ### REGLES ESSENTIELLES ###
 
-Main.class : Main.java MenuView.class MenuController.class VerifierModel.class SudokuView.class SudokuController.class Case.class CaseController.class CaseModel.class
+Main.class : Main.java MenuView.class MenuController.class VerifierModel.class SudokuView.class SudokuController.class ChargerSauvegardeController.class
 	${JC} ${JCFLAGS} Main.java
 
 MenuView.class : MenuView.java MenuController.class
@@ -26,14 +26,9 @@ SudokuView.class : SudokuView.java VerifierModel.class SudokuGrid.class
 SudokuController.class : SudokuController.java
 	${JC} ${JCFLAGS} SudokuController.java
 
-Case.class : Case.java
-	${JC} ${JCFLAGS} Case.java
+ChargerSauvegardeController.class : ChargerSauvegardeController.java
+	${JC} ${JCFLAGS} ChargerSauvegardeController.java
 
-CaseController.class : CaseController.java
-	${JC} ${JCFLAGS} CaseController.java
-
-CaseModel.class : CaseModel.java
-	${JC} ${JCFLAGS} CaseModel.java
 
 ### REGLES OPTIONNELLES ###
 
