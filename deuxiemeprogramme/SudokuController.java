@@ -2,10 +2,18 @@ import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Contrôleur pour la grille Sudoku.
+ */
 public class SudokuController implements ActionListener {
     private SudokuGrid model;
     private SudokuView view;
 
+    /**
+     * Constructeur de SudokuController.
+     * @param model Le modèle de la grille Sudoku
+     * @param view La vue de la grille Sudoku
+     */
     public SudokuController(SudokuGrid model, SudokuView view) {
         this.model = model;
         this.view = view;
@@ -13,6 +21,10 @@ public class SudokuController implements ActionListener {
         view.addController(this);
     }
 
+    /**
+     * Gère les événements liés à la grille Sudoku.
+     * @param e L'événement à gérer
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         // Récupérer la source de l'événement

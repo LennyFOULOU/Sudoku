@@ -3,7 +3,15 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Contrôleur chargé de sauvegarder les données d'une grille Sudoku.
+ */
 public class SauvegardeController {
+     /**
+     * Sauvegarde les données de la grille Sudoku dans un fichier.
+     * @param sudokuGridData Les données de la grille Sudoku à sauvegarder.
+     * @param frame La fenêtre JFrame associée à l'application.
+     */
     public void saveData(int[][] sudokuGridData, JFrame frame) {
         JFileChooser fileChooser = new JFileChooser();
         int userSelection = fileChooser.showSaveDialog(frame);

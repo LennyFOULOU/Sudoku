@@ -3,7 +3,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Contrôleur chargé de charger et sauvegarder des grilles de Sudoku.
+ */
 public class ChargerSauvegardeController {
+    /**
+     * Charge les données de la grille à partir d'un fichier.
+     * 
+     * @param filePath Chemin du fichier de sauvegarde
+     * @param frame JFrame associée à l'application
+     * @return La grille de Sudoku chargée sous forme d'un tableau d'entiers
+     */
     public int[][] loadGridData(String filePath, JFrame frame) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));

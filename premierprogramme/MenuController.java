@@ -2,6 +2,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+/**
+ * Contrôleur du menu principal de l'application Sudoku.
+ */
 public class MenuController implements ActionListener {
     private JFrame fenetre;
     private JButton jouerButton;

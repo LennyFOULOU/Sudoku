@@ -3,7 +3,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Classe principale de l'application Sudoku.
+ */
 public class Main {
+    /**
+     * Point d'entrée de l'application.
+     * 
+     * @param args Arguments de la ligne de commande
+     */
     public static void main(String[] args) {
         // Création de la vue du menu
         MenuView menuView = new MenuView();

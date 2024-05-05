@@ -5,7 +5,16 @@ import java.io.IOException;
 
 
 public class Main {
+
+    /**
+ * Classe principale de l'application Sudoku.
+ */
     public static void main(String[] args) {
+          /**
+     * Point d'entrée de l'application.
+     * 
+     * @param args Arguments de la ligne de commande
+     */
         // Création de la vue du menu
         MenuView menuView = new MenuView();
 

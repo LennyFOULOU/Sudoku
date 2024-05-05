@@ -1,10 +1,21 @@
+/**
+ * Le modèle chargé de vérifier la validité de la grille de Sudoku.
+ */
 public class VerifierModel {
     private int[][] grid; // Représentation des données de la grille
 
+    /**
+     * Constructeur de la classe VerifierModel.
+     * @param grid Les données de la grille de Sudoku à vérifier.
+     */
     public VerifierModel(int[][] grid) {
         this.grid = grid;
     }
 
+      /**
+     * Vérifie la validité de la grille de Sudoku.
+     * @return true si la grille est valide, false sinon.
+     */
     public boolean verify() {
         // Vérification des lignes
         for (int row = 0; row < 9; row++) {
@@ -32,6 +43,11 @@ public class VerifierModel {
         return true;
     }
 
+        /**
+     * Vérifie si les nombres dans un tableau sont uniques.
+     * @param nums Le tableau de nombres à vérifier.
+     * @return true si les nombres sont uniques, false sinon.
+     */
     private boolean isUnique(int[] nums) {
         boolean[] seen = new boolean[10];
         for (int num : nums) {

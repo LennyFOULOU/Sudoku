@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * Vue du menu principal de l'application Sudoku.
+ */
 public class MenuView {
     private JFrame frame;
     private JPanel panel;
@@ -11,6 +14,9 @@ public class MenuView {
     private JButton commentJouerButton;
     private JButton quitterButton;
 
+     /**
+     * Constructeur de MenuView.
+     */
     public MenuView() {
         frame = new JFrame();
         frame.setSize(600, 360);
@@ -51,10 +57,16 @@ public class MenuView {
         frame.setContentPane(backgroundLabel);
     }
 
+        /**
+     * Affiche la fenêtre du menu principal.
+     */
     public void show() {
         frame.setVisible(true);
     }
 
+      /**
+     * Ouvre la boîte de dialogue de sélection de fichier pour charger une grille de Sudoku.
+     */
     private void openFileSelectionDialog() {
         JFileChooser fileChooser = new JFileChooser();
         int result = fileChooser.showOpenDialog(frame);
@@ -90,13 +102,5 @@ public class MenuView {
         return frame;
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                MenuView menu = new MenuView();
-                menu.show();
-            }
-        });
-    }
+   
 }

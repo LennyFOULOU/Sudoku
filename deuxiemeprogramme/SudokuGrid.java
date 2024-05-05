@@ -1,6 +1,13 @@
+/**
+ * Représente la grille de Sudoku.
+ */
 public class SudokuGrid {
     private int[][] grid;
 
+    /**
+     * Constructeur de SudokuGrid.
+     * Initialise la grille avec des zéros.
+     */
     public SudokuGrid() {
         // Initialisation de la grille avec des zéros
         grid = new int[9][9];
@@ -11,6 +18,13 @@ public class SudokuGrid {
         }
     }
 
+     /**
+     * Vérifie si le placement du nombre est valide dans la grille.
+     * @param row L'indice de ligne
+     * @param col L'indice de colonne
+     * @param num Le nombre à placer
+     * @return true si le placement est valide, sinon false
+     */
     public boolean isValidMove(int row, int col, int num) {
         // Vérifie si le placement du nombre est valide dans la grille
         if (isValidRow(row, num) && isValidColumn(col, num) && isValidBox(row - row % 3, col - col % 3, num)) {
@@ -51,16 +65,32 @@ public class SudokuGrid {
         return true;
     }
 
+     /**
+     * Place un nombre dans la grille.
+     * @param row L'indice de ligne
+     * @param col L'indice de colonne
+     * @param num Le nombre à placer
+     */
     public void setNumber(int row, int col, int num) {
         // Place un nombre dans la grille
         grid[row][col] = num;
     }
 
+        /**
+     * Récupère le nombre à une position donnée dans la grille.
+     * @param row L'indice de ligne
+     * @param col L'indice de colonne
+     * @return Le nombre à la position spécifiée
+     */
     public int getNumber(int row, int col) {
         // Récupère le nombre à une position donnée dans la grille
         return grid[row][col];
     }
 
+        /**
+     * Vérifie si la grille est pleine.
+     * @return true si la grille est pleine, sinon false
+     */
     public boolean isGridFull() {
         // Vérifie si la grille est pleine
         for (int row = 0; row < 9; row++) {
@@ -73,6 +103,10 @@ public class SudokuGrid {
         return true;
     }
 
+      /**
+     * Résout la grille de Sudoku.
+     * @return true si la grille est résolue, sinon false
+     */
     public boolean solve() {
         // Résout la grille de Sudoku 
         return solveSudoku();

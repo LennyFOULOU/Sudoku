@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.Timer;
-
+/**
+ * Vue de la grille et du jeu
+ */
 public class SudokuView {
     private JFrame frame;
     private JPanel[][] regionPanels;
@@ -13,6 +15,10 @@ public class SudokuView {
     private Timer timer;
     private JLabel timerLabel;
 
+      /**
+     * Constructeur de la classe SudokuView.
+     * @param gridData Les données initiales de la grille Sudoku
+     */
     public SudokuView(int[][] gridData) {
         frame = new JFrame("Sudoku");
         frame.setSize(600, 650);
@@ -59,6 +65,10 @@ public class SudokuView {
         createMenuBar();
     }
 
+        /**
+     * Ajoute un contrôleur à la liste des contrôleurs de cette vue.
+     * @param controller Le contrôleur à ajouter
+     */
     public void addController(SudokuController controller) {
         controllers.add(controller);
     }

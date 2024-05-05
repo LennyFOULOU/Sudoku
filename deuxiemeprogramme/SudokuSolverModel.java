@@ -1,12 +1,23 @@
+/**
+ * Modèle pour résoudre un Sudoku.
+ */
 public class SudokuSolverModel {
     private int[][] grid;
     private Timer timer;
 
+     /**
+     * Constructeur de SudokuSolverModel.
+     * @param grid La grille Sudoku à résoudre
+     */
     public SudokuSolverModel(int[][] grid) {
         this.grid = grid;
         timer = new Timer();
     }
 
+     /**
+     * Résout le Sudoku.
+     * @return true si le Sudoku est résolu, sinon false
+     */
     public boolean solve() {
         timer.start(); // Démarrage du timer avant la résolution
         boolean solved = solveSudoku(0, 0);
@@ -59,10 +70,18 @@ public class SudokuSolverModel {
         return true;
     }
 
+     /**
+     * Obtient la grille résolue.
+     * @return La grille résolue
+     */
     public int[][] getGrid() {
         return grid;
     }
 
+        /**
+     * Obtient le temps écoulé pendant la résolution.
+     * @return Le temps écoulé en millisecondes
+     */
     public long getElapsedTime() {
         return timer.getElapsedTime(); // Obtention du temps écoulé après la résolution
     }
